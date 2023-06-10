@@ -1,14 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import walletConnectModule from "@web3-onboard/walletconnect";
 import injectedModule from "@web3-onboard/injected-wallets";
 import Onboard from "@web3-onboard/core";
-// import logo1 from "../assets/recycling.jpg";
 import logo1 from "../assets/banner.jpg";
 // import { TransactionContext } from "../context/TransactionContext";
 
 const walletConnect = walletConnectModule();
 const injected = injectedModule();
-
 const modules = [walletConnect, injected];
 
 const RPC_URL = "https://erpc.apothem.network";
@@ -35,7 +34,6 @@ const onboard = Onboard({
     ],
   },
 });
-
 const Welcome = () => {
   // const { currentAccount } = useContext(TransactionContext);
   const [account, setAccount] = useState();
