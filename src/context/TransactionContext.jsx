@@ -46,7 +46,7 @@ export const TransactionsProvider = ({ children }) => {
 
         setTransactions(structuredTransactions);
       } else {
-        console.log("ZK EVM Polygon Testnet is not present");
+        console.log("XDC Testnet is not present");
       }
     } catch (error) {
       console.log(error);

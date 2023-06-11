@@ -47,8 +47,13 @@ function Create() {
         <RainbowKitProvider chains={clientChains} modalSize="compact">
           <CivicPassProvider>
             <Navbar />
-            <ConnectButton />
-            <Gateway />
+            <button className="text-black font-semibold bg-green-300 py-5 px-20 mx-14 rounded-full cursor-pointer hover:bg-green-800 hover:text-white">
+            <ConnectButton
+  accountStatus={{
+    smallScreen: 'avatar',
+    largeScreen: 'full',
+  }}
+/>           </button> <Gateway />
             <MintProfile />
           </CivicPassProvider>
         </RainbowKitProvider>

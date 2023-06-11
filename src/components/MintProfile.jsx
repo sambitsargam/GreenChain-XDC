@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import { NFTStorage } from "nft.storage";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
+import { useGateway, GatewayStatus } from "@civic/ethereum-gateway-react";
 import Web3Modal from "web3modal";
 import Waste from "../utils/Waste.json";
 import { wastemarketplaceAddress } from "../../config";
-
 // eslint-disable-next-line max-len
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDllMUUyY0YxODI2NTMwZDkyZThBM0I2MzFmMTRlQkUwQjUzMDYzMkIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2MzQzNzQ0NTg3MCwibmFtZSI6IlJFQ1lDTEUgIn0.LCcph8Eym4RgSDE1zVuKXNWYn-WrwBNRqUFxl6bk-6o";
 
@@ -90,7 +90,7 @@ const MintWaste = () => {
       // await mintNFTTx.wait();
       return mintNFTTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to ZKEVM Polygon Testnet.");
+      setErrorMessage("Failed to send tx to XDC Testnet.");
       console.log(error);
     }
   };
@@ -120,6 +120,7 @@ const MintWaste = () => {
     navigate("/explore");
   };
 
+  const { gatewayStatus } = useGateway();
   const getIPFSGatewayURL = (ipfsURL) => {
     const urlArray = ipfsURL.split("/");
     // console.log("urlArray = ", urlArray);
@@ -207,10 +208,13 @@ const MintWaste = () => {
             )}
 
           </div>
-
-          <button type="button" onClick={(e) => mintNFTToken(e, uploadedFile)} className="font-bold mt-20 bg-green-500 text-white text-2xl rounded p-4 shadow-lg">
-            Register Item
-          </button>
+          {gatewayStatus === GatewayStatus.ACTIVE ? (
+            <button type="button" onClick={(e) => mintNFTToken(e, uploadedFile)} className="font-bold mt-20 bg-green-500 text-white text-2xl rounded p-4 shadow-lg">
+              Register Item
+            </button>
+          ) : (
+            <h2 className="font-bold mt-20 bg-green-500 text-white text-2xl rounded p-4 shadow-lg">Please Connect Wallet verify First in Left Corner</h2>
+          )}
         </div>
       </div>
     </>
