@@ -4,7 +4,7 @@ import { CivicPassProvider } from "../context/CivicPass";
 import {
   GatewayStatus,
   IdentityButton,
-  useGateway,
+  useGateway, ButtonMode,
 } from "@civic/ethereum-gateway-react";
 import { useAccount, configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
@@ -32,7 +32,7 @@ const Gateway = () => {
   const { gatewayStatus } = useGateway();
   return (
     <div className="object-center" >
-      <IdentityButton />
+      <IdentityButton mode={ButtonMode.LIGHT} animation={true}  />
       {gatewayStatus !== GatewayStatus.ACTIVE && (
         <div>Verify you are a unique person before entering</div>
       )}
